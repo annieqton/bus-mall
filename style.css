@@ -1,0 +1,51 @@
+* {
+  font-family: Arial;
+}
+
+main {
+  max-width: 900px;
+  min-width: 900px;
+}
+
+
+
+#image_container {
+  margin: 20px 20px 20px 40px;
+}
+
+
+#left {
+  position: relative;
+  display: inline-block;
+  float: left;
+  margin: 10px 10px 10px 10px;
+}
+
+#middle {
+  position: relative;
+  display: inline-block;
+  float: left;
+  margin: 10px 0px 10px 0px;
+}
+
+#right {
+  position: absolute;
+  display: inline-block;
+  float: right;
+  margin: 10px 10px 10px 10px;
+}
+
+
+img {
+  box-shadow: 4px 4px 4px gray;
+  width: 260px;
+  height: 260px;
+}
+
+button {
+  clear: both;
+  position:fixed;
+  float:left;
+  margin: 300px 400px 0px 420px;
+  color: #888;
+}
