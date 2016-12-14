@@ -1,51 +1,70 @@
 * {
-  font-family: Arial;
+  font-family: Helvetica;
 }
 
-main {
+body {
   max-width: 900px;
   min-width: 900px;
+  margin-left: 20px;
 }
 
-
-
-#image_container {
-  margin: 20px 20px 20px 40px;
+h1 {
+  font-size: 30px;
+  text-align: center;
+  padding: 30px 0px 30px 0px;
 }
 
+#instruction{
+  padding: 10px 10px 10px 10px;
+  border: 1px dashed gray;
+  margin-top: 5px;
+}
+
+span {
+  font-weight: bold;
+}
 
 #left {
   position: relative;
   display: inline-block;
   float: left;
-  margin: 10px 10px 10px 10px;
+  margin-left: 100px;
 }
 
-#middle {
+#center {
   position: relative;
   display: inline-block;
   float: left;
-  margin: 10px 0px 10px 0px;
 }
 
 #right {
   position: absolute;
   display: inline-block;
   float: right;
-  margin: 10px 10px 10px 10px;
 }
 
-
 img {
-  box-shadow: 4px 4px 4px gray;
-  width: 260px;
-  height: 260px;
+  z-index: 1;
+  box-shadow: 4px 4px 4px black;
+  width: 200px;
+  height: 200px;
+  margin: 30px 20px 30px 20px;
 }
 
 button {
   clear: both;
-  position:fixed;
+  position: absolute;;
   float:left;
-  margin: 300px 400px 0px 420px;
+  margin: 260px 300px 0px 400px;
   color: #888;
+  font-size: 14px;
+  display: block;
+  display: none;
+}
+
+#picList {
+  clear: both;
+  display: table;
+  margin-top: 330px;
+  font-size: 12px;
 }
