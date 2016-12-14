@@ -17,7 +17,6 @@ var right = document.getElementById('right');
 // -----------------
 var allProducts = [];
 var names = ['bag', 'banana', 'bathroom', 'boots', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water_can', 'wine_glass'];
-// var MAXCLICKS = 3;
 
 // Constructor
 // -----------------
@@ -190,3 +189,139 @@ function displayList() {
 // display 3 new images
 showThreePics();
 pic_container.addEventListener('click', handleClick);
+
+
+
+
+// CHART -----------------------------------------------------------------------------------------------------------------
+
+//declare global variables for chart
+var tallyChart;
+var chartDrawn = false;
+
+// ++++++++++++++++++++++++++++++++++++++++++++
+// DATA - Constructor and instances
+// ++++++++++++++++++++++++++++++++++++++++++++
+
+function Chart(name, clicks, views, identifier) {
+  this.name = name;
+  this.clicks = clicks;
+  this.views = views;
+  this.identifier = identifier;
+  allProducts.push(this);
+}
+
+// for (var i = 0; i < allProducts.length, i++) {
+//   for (var j = 0; j < names.length, j++) {
+//     names[j].render;
+//   }
+// allProducts[i].render;
+// }
+// console.log(allProducts.length);
+
+new Chart(allProducts[0], allProducts[newPicsArray[i]].views,allProducts[newPicsArray[i]].clicks, names[i]);
+
+var clicks = [];
+var views = [];
+
+function updateChartArrays() {
+  for (var i =0, i < allProducts.length; i++) {
+    clicks[i] = allProducts[i].clicks;
+    views[i] = allProducts[i].views;
+  }
+}
+
+function tallyVote(thisChart) {
+  for (var i =0; i < allProducts.length; i++) {
+    if (thisChart === allProducts[i].identifier) {
+      allProducts[i].clicks++;
+      allProducts[i].views++;
+      updateChartArrays();
+    }
+  }
+}
+
+// ++++++++++++++++++++++++++++++++++++++++++++
+// CHART STUFF
+// ++++++++++++++++++++++++++++++++++++++++++++
+
+var data = {
+  labels: names,
+  dataset: [
+    {
+      data: clicks,
+      backgroundColor: [
+        'blue'
+      ],
+      hoverBackgroundColor: [
+        'lightblue'
+      ]
+    }]
+};
+
+fuction drawChart() {
+  var ctx = document.getElementById('click-chart').getContext('2d');
+  tallyChart = new Chart(ctx,{
+    type: 'bar',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']
+      datasets: [ {
+        label: '# of clicks',
+        data: [clicks[i]],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255,99,132,1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  }],
+  chartDrawn = true;
+}
+
+function hideChart() {
+  document.getElementById(click-chart).hidden = true;
+}
+
+// ++++++++++++++++++++++++++++++++++++++++++++
+// EVENT LISTENERS
+// ++++++++++++++++++++++++++++++++++++++++++++
+
+document.getElementById('clickButton').addEventListener('click', function() {
+  drawChart();
+});
+
+document.getElementById('click-chart').addEventListener('click', function(){
+  document.getElementById('click-chart').hidden = true;
+});
+
+document.getElementById('voting').addEventListener('click', funtion(event){
+  if (event.target.id !== 'voting') {
+    tallyVote(event.target.id);
+  };
+
+  if (chartDrawn) {
+    tallyChart.update();
+  }
+});
