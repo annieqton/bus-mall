@@ -24,47 +24,26 @@ span {
   font-weight: bold;
 }
 
-#left {
-  position: relative;
-  display: inline-block;
-  float: left;
-  margin-left: 100px;
-}
-
-#center {
-  position: relative;
-  display: inline-block;
-  float: left;
-}
-
-#right {
-  position: absolute;
-  display: inline-block;
-  float: right;
-}
-
 img {
-  z-index: 1;
   box-shadow: 4px 4px 4px black;
   width: 200px;
   height: 200px;
-  margin: 30px 20px 30px 20px;
+  margin: 30px 30px 30px 30px;
 }
 
-button {
+#clickButton{
   clear: both;
-  position: absolute;;
+  position: absolute;
   float:left;
-  margin: 260px 300px 0px 400px;
+  margin: 0px 250px 0px 400px;
   color: #888;
   font-size: 14px;
-  display: block;
   display: none;
 }
 
 #picList {
   clear: both;
   display: table;
-  margin-top: 330px;
+  margin-top: 30px;
   font-size: 12px;
 }

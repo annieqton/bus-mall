@@ -5,9 +5,11 @@
     <title>Bus Mall - Marketing Study</title>
     <link rel ="stylesheet" type="text/css" href="reset.css" />
     <link rel ="stylesheet" type="text/css" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.min.js"></script>
   </head>
 
   <body>
+    <!-- <button id="clearData">Clear Data</button> -->
     <h1> Bus Mall - Marketing Study</h1>
     <h6> Thank you for participating in the Focus Group for Bus Mall.  Your input will help us tailor our catalog to the interest of numerous Puget Sound transit riders.</h6>
     <br>
@@ -21,16 +23,22 @@
       <img id="right" src="" />
     </section>
 
+
+    <div id="showChart">
+      <button id="clickButton">View Result</button>
+
+      <section id="picList">
+        <ul>
+          <li></li>
+        </ul>
+      </section>
+
+      <section id="chart"></section>
+
+    </div>
+
+    <canvas id="click-chart" width="600px" height="300px"></canvas>
     <script src="clicktrack.js" type="text/javascript"></script>
-
-    <button onclick="displayList()" id="clickButton">View Result</button>
-
-    <section id="picList">
-      <ul>
-        <li></li>
-      </ul>
-    </section>
-
 
 
   </body>
