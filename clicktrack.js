@@ -14,14 +14,26 @@ var center = document.getElementById('center');
 var right = document.getElementById('right');
 var clickButton = document.getElementById('clickButton');
 var showChart = document.getElementById('chart');
+var storedData = JSON.stringify(allProducts); // convert and assign all products into string
+var retrievedData;
 
 // Global variables
 // -----------------
 var allProducts = [];
 var names = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water_can', 'wine_glass'];
 
+
+//before pageload, use IF statement to validate that local storage exists. If LS exists, then retrieve data, convert data, assign data
+if(storedData !== '') {
+  retrievedData = localStorage.getItem(storedData);
+  JSON.parse(storedData);
+  localStorage.setItem(allProducts)
+}
+else {
+
+}
+// -----------------------------------------------------------------------------
 // Constructor
-// -----------------
 function Product(name) {
   this.name = name;
   this.filepath = 'img/' + name + '.jpg';
@@ -191,7 +203,6 @@ function displayList() {
 }
 
 
-
 // emptying the chart and update values we put into it
 function displayChart() {
   var chart = document.getElementsByClassName('chart');
@@ -204,8 +215,6 @@ function displayChart() {
 //declare global variables for chart
 var tallyChart;
 var chartDrawn = false;
-
-
 
 // ++++++++++++++++++++++++++++++++++++++++++++
 // CHART STUFF
