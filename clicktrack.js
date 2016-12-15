@@ -14,7 +14,7 @@ var center = document.getElementById('center');
 var right = document.getElementById('right');
 var clickButton = document.getElementById('clickButton');
 var showChart = document.getElementById('chart');
-var storedData = JSON.stringify(allProducts); // convert and assign all products into string
+var storedData = localStorage.getItem('allProducts');
 
 
 // Global variables
@@ -23,15 +23,18 @@ var allProducts = [];
 var names = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water_can', 'wine_glass'];
 
 //before pageload, use IF statement to validate that local storage exists, then retrieve data, convert, and put it back into array. Else, run the code as normal
-if (storedData !== '') {
-  var retrievedData = localStorage.getItem('storedData');
-  localStorage.retrievedData = JSON.parse('retrievedData');
-  localStorage.setItem ('storedData', JSON.stringify('storedData'));
+if(storedData) {
+  var retrievedData = JSON.parse(storedData);
+}
+else {
+  new Product;
+  rand();
 }
 
 
 // Constructor
 // -----------------
+
 function Product(name) {
   this.name = name;
   this.filepath = 'img/' + name + '.jpg';
@@ -132,6 +135,11 @@ function updateChartArrays() {
   }
 }
 
+// convert allProducts into string and put in storage
+function storeAllProducts() {
+  localStorage.setItem('storedData', JSON.stringify('allProducts'));
+}
+
 
 function handleClick(event) {
   if (clickCounter >= 25) {
@@ -197,7 +205,8 @@ function displayList() {
     picList.appendChild(liEl);
     picList.appendChild(liEl2);
   }
-  drawChart();
+  drawChart(); // call function to draw chart
+  storeAllProducts(); // call function to store allProducts array string
 }
 
 
@@ -260,6 +269,10 @@ function drawChart() {
   chartDrawn = true;
 }
 
+// function clearStorage () {
+//   localStorage.clear(storedData);
+// }
+// // clearStorage();
 
 // ++++++++++++++++++++++++++++++++++++++++++++
 // EVENT LISTENERS
@@ -274,9 +287,9 @@ if (chartDrawn) {
   tallyChart.update();
 }
 
-
 // display 3 new images
 showThreePics();
 clickButton.addEventListener('click', displayList);
 picContainer.addEventListener('click', handleClick);
 showChart.addEventListener('click', showChart);
+// clearStorage.addEventListener('click',clearStorage);
