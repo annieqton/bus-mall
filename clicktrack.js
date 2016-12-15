@@ -14,14 +14,27 @@ var center = document.getElementById('center');
 var right = document.getElementById('right');
 var clickButton = document.getElementById('clickButton');
 var showChart = document.getElementById('chart');
+var storedData = localStorage.getItem('allProducts');
+
 
 // Global variables
 // -----------------
 var allProducts = [];
 var names = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water_can', 'wine_glass'];
 
+//before pageload, use IF statement to validate that local storage exists, then retrieve data, convert, and put it back into array. Else, run the code as normal
+if(storedData) {
+  var retrievedData = JSON.parse(storedData);
+}
+else {
+  new Product;
+  rand();
+}
+
+
 // Constructor
 // -----------------
+
 function Product(name) {
   this.name = name;
   this.filepath = 'img/' + name + '.jpg';
@@ -122,9 +135,14 @@ function updateChartArrays() {
   }
 }
 
+// convert allProducts into string and put in storage
+function storeAllProducts() {
+  localStorage.setItem('storedData', JSON.stringify('allProducts'));
+}
+
 
 function handleClick(event) {
-  if (clickCounter >= 5) {
+  if (clickCounter >= 25) {
     // No more clicks should be allowed, we have already hit the total number.
     return;
   }
@@ -138,7 +156,7 @@ function handleClick(event) {
   // console.log(event.target.src, 'was clicked');
   // alert for clicks not on images
   if (event.target.id === 'pic_container'){
-    return alert ('Please click on a picture, not a background.');
+    return alert ('Please click on a picture, not the background.');
   }
 
   // tally the click
@@ -162,7 +180,7 @@ function handleClick(event) {
 
 
   // View Result button only appears when total clicks have reached 25 clicks.
-  if (clickCounter >= 5) {
+  if (clickCounter >= 25) {
     showButton();
   } else {
     showThreePics();
@@ -187,7 +205,8 @@ function displayList() {
     picList.appendChild(liEl);
     picList.appendChild(liEl2);
   }
-  drawChart();
+  drawChart(); // call function to draw chart
+  storeAllProducts(); // call function to store allProducts array string
 }
 
 
@@ -227,9 +246,9 @@ var data = {
       label: 'Views',  //clicks array we declared earlier
       data: views,
       backgroundColor:
-        'blue',
+        'green',
       hoverBackgroundColor:
-        'lightblue'
+        'lightgreen'
     }]
 };
 
@@ -250,6 +269,10 @@ function drawChart() {
   chartDrawn = true;
 }
 
+// function clearStorage () {
+//   localStorage.clear(storedData);
+// }
+// // clearStorage();
 
 // ++++++++++++++++++++++++++++++++++++++++++++
 // EVENT LISTENERS
@@ -264,9 +287,9 @@ if (chartDrawn) {
   tallyChart.update();
 }
 
-
 // display 3 new images
 showThreePics();
 clickButton.addEventListener('click', displayList);
 picContainer.addEventListener('click', handleClick);
 showChart.addEventListener('click', showChart);
+// clearStorage.addEventListener('click',clearStorage);
