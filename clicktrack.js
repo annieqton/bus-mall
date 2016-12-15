@@ -124,7 +124,7 @@ function updateChartArrays() {
 
 
 function handleClick(event) {
-  if (clickCounter >= 5) {
+  if (clickCounter >= 25) {
     // No more clicks should be allowed, we have already hit the total number.
     return;
   }
@@ -138,7 +138,7 @@ function handleClick(event) {
   // console.log(event.target.src, 'was clicked');
   // alert for clicks not on images
   if (event.target.id === 'pic_container'){
-    return alert ('Please click on a picture, not a background.');
+    return alert ('Please click on a picture, not the background.');
   }
 
   // tally the click
@@ -162,7 +162,7 @@ function handleClick(event) {
 
 
   // View Result button only appears when total clicks have reached 25 clicks.
-  if (clickCounter >= 5) {
+  if (clickCounter >= 25) {
     showButton();
   } else {
     showThreePics();
@@ -227,9 +227,9 @@ var data = {
       label: 'Views',  //clicks array we declared earlier
       data: views,
       backgroundColor:
-        'blue',
+        'green',
       hoverBackgroundColor:
-        'lightblue'
+        'lightgreen'
     }]
 };
 
