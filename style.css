@@ -31,7 +31,7 @@ img {
   margin: 30px 30px 30px 30px;
 }
 
-button {
+#clickButton{
   clear: both;
   position: absolute;
   float:left;
