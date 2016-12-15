@@ -14,11 +14,21 @@ var center = document.getElementById('center');
 var right = document.getElementById('right');
 var clickButton = document.getElementById('clickButton');
 var showChart = document.getElementById('chart');
+var storedData = JSON.stringify(allProducts); // convert and assign all products into string
+
 
 // Global variables
 // -----------------
 var allProducts = [];
 var names = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water_can', 'wine_glass'];
+
+//before pageload, use IF statement to validate that local storage exists, then retrieve data, convert, and put it back into array. Else, run the code as normal
+if (storedData !== '') {
+  var retrievedData = localStorage.getItem('storedData');
+  localStorage.retrievedData = JSON.parse('retrievedData');
+  localStorage.setItem ('storedData', JSON.stringify('storedData'));
+}
+
 
 // Constructor
 // -----------------
