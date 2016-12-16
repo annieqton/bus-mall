@@ -14,7 +14,7 @@ var center = document.getElementById('center');
 var right = document.getElementById('right');
 var clickButton = document.getElementById('clickButton');
 var showChart = document.getElementById('chart');
-var storedData = localStorage.getItem('allProducts');
+var storedData = localStorage.getItem('storedData');
 
 
 // Global variables
@@ -24,11 +24,12 @@ var names = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'ch
 
 //before pageload, use IF statement to validate that local storage exists, then retrieve data, convert, and put it back into array. Else, run the code as normal
 if(storedData) {
-  var retrievedData = JSON.parse(storedData);
+  allProducts = JSON.parse(storedData);
 }
 else {
-  new Product;
-  rand();
+  for(var i = 0; i < names.length; i++) {
+    new Product(names[i]);
+  }
 }
 
 
@@ -49,9 +50,6 @@ Product.prototype.render = function () {
 
 // Instances
 // -----------------
-for(var i = 0; i < names.length; i++) {
-  new Product(names[i]);
-}
 // console.table(allProducts);
 
 // ++++++++++++++++++++++++++++
@@ -137,7 +135,7 @@ function updateChartArrays() {
 
 // convert allProducts into string and put in storage
 function storeAllProducts() {
-  localStorage.setItem('storedData', JSON.stringify('allProducts'));
+  localStorage.setItem('storedData', JSON.stringify(allProducts));
 }
 
 
@@ -177,6 +175,7 @@ function handleClick(event) {
     // console.log(allProducts[newPicsArray[2]]);
     updateChartArrays();
   }
+  storeAllProducts(); // call function to store allProducts array string. two ways of putting this: one is inside evenHandler, the other is inside view result.
 
 
   // View Result button only appears when total clicks have reached 25 clicks.
@@ -206,7 +205,6 @@ function displayList() {
     picList.appendChild(liEl2);
   }
   drawChart(); // call function to draw chart
-  storeAllProducts(); // call function to store allProducts array string
 }
 
 
